@@ -10,7 +10,7 @@ const port = process.env.BACKEND_PORT ?? 3000;
 const app = express();
 const io = new Server(
   app.listen(port, () => {
-    console.log("serverrrawww!!");
+    console.log(`server_hosted_at_http://localhost:${port}`);
   })
 );
 
