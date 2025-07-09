@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "server.ts",
   "scripts": {
-    "serve": "bun server.ts",
+    "serve": "bun --hot server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

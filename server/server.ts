@@ -5,7 +5,7 @@ import type { Request, Response } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
-const port = process.env.BACKEND_PORT ?? 3000;
+const port = process.env.BACKEND_PORT ?? 5000;
 
 const app = express();
 const io = new Server(
