@@ -13,7 +13,7 @@ export function App() {
 
       <h1>Bun + React</h1>
       <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
+        Edit <code>src/App.tsx</code> and save to test HMRr
       </p>
     </div>
   );

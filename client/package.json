@@ -1,14 +1,13 @@
 {
-  "name": "bun-react-template",
+  "name": "chat-app-client",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "src/index.tsx",
-  "module": "src/index.tsx",
+  "main": "src/frontend.tsx",
+  "module": "src/frontend.tsx",
   "scripts": {
-    "dev": "bun --hot src/index.tsx",
-    "build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-    "start": "NODE_ENV=production bun src/index.tsx"
+    "dev": "bun --hot src/index.html",
+    "start": "NODE_ENV=production bun src/index.html"
   },
   "dependencies": {
     "react": "^19",
