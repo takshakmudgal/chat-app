@@ -6,6 +6,7 @@
   "main": "server.ts",
   "scripts": {
     "serve": "bun --hot server.ts",
+    "build": "bun build ./server.ts --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +14,7 @@
   "license": "ISC",
   "packageManager": "bun@1.2.18",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "socket.io": "^4.8.1"
   },
