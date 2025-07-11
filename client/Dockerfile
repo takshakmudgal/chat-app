@@ -14,9 +14,10 @@ COPY . .
 # Accept build-time environment variables
 ARG BUN_PUBLIC_SERVER_URL
 ENV BUN_PUBLIC_SERVER_URL=$BUN_PUBLIC_SERVER_URL
+ENV PORT=10000
 
-# Expose port 3000 (default for dev server)
-EXPOSE 3000
+# Expose port 10000 (Render's port)
+EXPOSE 10000
 
 # Run the development server
-CMD ["bun", "run", "dev", "--host", "0.0.0.0", "--port", "3000"] 
+CMD ["bun", "run", "dev"] 
