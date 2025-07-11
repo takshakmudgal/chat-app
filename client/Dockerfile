@@ -1,12 +1,12 @@
-# Build stage
-FROM oven/bun:1 AS build
+# Use official Bun image
+FROM oven/bun:1
 WORKDIR /usr/src/app
 
 # Copy package files
 COPY package.json bun.lock ./
 
 # Install dependencies
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # Copy source code
 COPY . .
@@ -15,20 +15,8 @@ COPY . .
 ARG BUN_PUBLIC_SERVER_URL
 ENV BUN_PUBLIC_SERVER_URL=$BUN_PUBLIC_SERVER_URL
 
-# Build the application
-RUN bun run build
+# Expose port 3000 (default for dev server)
+EXPOSE 3000
 
-# Production stage - serve with nginx
-FROM nginx:alpine AS production
-
-# Copy built assets from build stage
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"] 
+# Run the development server
+CMD ["bun", "run", "dev", "--host", "0.0.0.0", "--port", "3000"] 
