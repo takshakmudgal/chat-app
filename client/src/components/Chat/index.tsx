@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-// Get server URL from environment variables, fallback to localhost for development
-const serverUrl = process.env.BUN_PUBLIC_SERVER_URL || "http://localhost:8080";
-const socket = io(serverUrl);
+const socket = io(process.env.BUN_PUBLIC_SERVER_URL || "http://localhost:8080");
 
 interface Message {
   content: string;

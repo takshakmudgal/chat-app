@@ -5,11 +5,8 @@
   "type": "module",
   "main": "server.ts",
   "scripts": {
-    "dev": "bun --hot server.ts",
     "serve": "bun --hot server.ts",
-    "build": "bun build ./server.ts --outdir=dist --target=node --minify",
-    "start": "NODE_ENV=production bun dist/server.js",
-    "prod": "NODE_ENV=production bun server.ts",
+    "build": "bun build ./server.ts --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
