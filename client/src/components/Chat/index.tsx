@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 // Get server URL - hardcoded for now to avoid process.env issues
-const SERVER_URL = "https://chat-app-rjtx.onrender.com";
+const SERVER_URL = "http://ckwc000444gk4sc4cokkccg8.49.43.168.99.sslip.io";
 
 console.log("Connecting to server:", SERVER_URL);
 const socket = io(SERVER_URL);
