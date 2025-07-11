@@ -7,7 +7,7 @@
   "module": "src/frontend.tsx",
   "scripts": {
     "dev": "bun --hot src/index.html --host 0.0.0.0 --port ${PORT:-3000}",
-    "build": "rm -rf dist && mkdir -p dist && bun build ./src/frontend.tsx --outdir=dist --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --define:process='{\"env\":{\"NODE_ENV\":\"production\"}}' && cp src/index.html dist/ && cp -r public dist/ && cp src/index.css dist/",
+    "build": "rm -rf dist && mkdir -p dist && bun build ./src/frontend.tsx --outdir=dist --target=browser --minify --define:process.env.NODE_ENV='\"production\"' && cp src/index.html dist/ && cp -r public dist/ && cp src/index.css dist/",
     "start": "NODE_ENV=production bun src/index.html"
   },
   "dependencies": {
