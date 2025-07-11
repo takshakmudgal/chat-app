@@ -13,14 +13,14 @@ const getServerURL = () => {
     return "http://localhost:8081";
   }
 
-  // Production - try different patterns for Coolify
-  if (hostname.includes("client")) {
-    // If client domain has 'client' in it, replace with 'server'
-    return `${protocol}//${hostname.replace("client", "server")}`;
-  } else {
-    // If using IP or simple domain, assume server is on port 8081
-    return `${protocol}//${hostname}:8081`;
+  // Production - use the server domain from Coolify
+  if (hostname.includes("g0wc8g0go44c8k88skk88o08")) {
+    // Replace client identifier with server identifier
+    return "http://zoc0oggss808k4w4kkwkgcw8.49.43.168.99.sslip.io";
   }
+
+  // Fallback for other production environments
+  return `${protocol}//${hostname}:8081`;
 };
 
 const SERVER_URL = getServerURL();
