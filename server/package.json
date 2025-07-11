@@ -6,6 +6,7 @@
   "main": "server.ts",
   "scripts": {
     "serve": "bun --hot server.ts",
+    "start": "bun dist/server.js",
     "build": "bun build ./server.ts --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
