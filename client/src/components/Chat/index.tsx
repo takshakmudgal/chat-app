@@ -1,31 +1,25 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-// Server URL - detect environment and use appropriate server URL
 const getServerURL = () => {
   if (typeof window === "undefined") return "http://localhost:8081";
 
   const hostname = window.location.hostname;
   const protocol = window.location.protocol;
 
-  // Local development
   if (hostname === "localhost" || hostname === "127.0.0.1") {
     return "http://localhost:8081";
   }
 
-  // Production - try to determine server URL
   if (hostname.includes("sslip.io") || hostname.includes("coolify")) {
-    // For Coolify deployments, try to replace client identifier with server
     if (hostname.includes("g0wc8g0go44c8k88skk88o08")) {
       return "http://zoc0oggss808k4w4kkwkgcw8.49.43.168.99.sslip.io";
     }
-    // Generic pattern for other Coolify deployments
     return hostname.includes("client")
       ? `${protocol}//${hostname.replace("client", "server")}`
       : `${protocol}//${hostname}:8081`;
   }
 
-  // Fallback for other production environments
   return `${protocol}//${hostname}:8081`;
 };
 

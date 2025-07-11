@@ -3,7 +3,7 @@ FROM oven/bun:1 AS build
 WORKDIR /usr/src/app
 
 # Copy package files
-COPY package.json package-lock.json ./
+COPY package.json bun.lock ./
 
 # Install dependencies
 RUN bun install
