@@ -7,11 +7,7 @@ const port = process.env.PORT || process.env.BACKEND_PORT || 8080;
 
 const app = express();
 const corsOptions = {
-  origin: [
-    "https://chat-app-client-tvsm.onrender.com",
-    "http://localhost:3000",
-    "http://localhost:10000",
-  ],
+  origin: "*",
   methods: ["GET", "POST"],
   credentials: true,
 };
