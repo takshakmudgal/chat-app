@@ -3,9 +3,6 @@ import { Server } from "socket.io";
 import cors from "cors";
 import type { Request, Response } from "express";
 
-import dotenv from "dotenv";
-dotenv.config();
-
 const port = process.env.PORT || process.env.BACKEND_PORT || 8080;
 
 const app = express();
