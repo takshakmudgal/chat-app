@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-// Server URL for Docker environment
-const SERVER_URL = "http://localhost:8080";
+// Server URL - hardcoded for local development, will be configured for production
+const SERVER_URL = "http://localhost:8081";
 
 console.log("Connecting to server:", SERVER_URL);
 const socket = io(SERVER_URL);
