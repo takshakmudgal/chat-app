@@ -1,5 +1,5 @@
-# Use official Bun image
-FROM oven/bun:1
+# Build stage
+FROM oven/bun:1 AS build
 WORKDIR /usr/src/app
 
 # Copy package files
@@ -11,13 +11,21 @@ RUN bun install
 # Copy source code
 COPY . .
 
-# Accept build-time environment variables
-ARG BUN_PUBLIC_SERVER_URL
-ENV BUN_PUBLIC_SERVER_URL=$BUN_PUBLIC_SERVER_URL
-ENV PORT=10000
+# Build the application
+RUN bun run build
 
-# Expose port 10000 (Render's port)
+# Production stage - serve with Bun
+FROM oven/bun:1 AS production
+WORKDIR /usr/src/app
+
+# Copy built files
+COPY --from=build /usr/src/app/dist ./dist
+
+# Expose port 10000
 EXPOSE 10000
 
-# Run the development server
-CMD ["bun", "--hot", "src/index.html", "--host", "0.0.0.0", "--port", "10000"] 
+# Create a simple server script
+RUN echo 'const server = Bun.serve({ port: 10000, hostname: "0.0.0.0", fetch(req) { const url = new URL(req.url); let filePath = url.pathname; if (filePath === "/") filePath = "/index.html"; try { const file = Bun.file(`./dist${filePath}`); return new Response(file); } catch { const indexFile = Bun.file("./dist/index.html"); return new Response(indexFile); } } }); console.log(`Server running on http://0.0.0.0:10000`);' > server.js
+
+# Start the server
+CMD ["bun", "server.js"] 
