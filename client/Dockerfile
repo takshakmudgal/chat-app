@@ -20,4 +20,4 @@ ENV PORT=10000
 EXPOSE 10000
 
 # Run the development server
-CMD ["bun", "run", "dev"] 
+CMD ["bun", "--hot", "src/index.html", "--host", "0.0.0.0", "--port", "10000"] 
