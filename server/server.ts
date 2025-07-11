@@ -7,11 +7,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const port = process.env.BACKEND_PORT ?? 8080;
+const nodeEnv = process.env.NODE_ENV ?? "development";
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") ?? [
+  "http://localhost:3000",
+];
 
 const app = express();
 const corsOptions = {
-  origin: "*",
+  origin: nodeEnv === "production" ? allowedOrigins : "*",
   methods: ["GET", "POST"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -26,8 +31,12 @@ const io = new Server(expressServer, {
 
 io.on("connection", (socket) => {
   console.log(`websocket_hosted_at_ws://localhost:${port}`);
-  socket.on("send_message", (msg) => {
-    console.log(msg);
+  socket.emit("receive_message", {
+    content: "Welcome to the chat!",
+    from: "server",
+  });
+  socket.on("send_message", (msg: string) => {
+    io.emit("receive_message", { content: msg, from: socket.id });
   });
 });
 
