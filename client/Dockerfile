@@ -11,6 +11,10 @@ RUN bun install --frozen-lockfile
 # Copy source code
 COPY . .
 
+# Accept build-time environment variables
+ARG BUN_PUBLIC_SERVER_URL
+ENV BUN_PUBLIC_SERVER_URL=$BUN_PUBLIC_SERVER_URL
+
 # Build the application
 RUN bun run build
 
