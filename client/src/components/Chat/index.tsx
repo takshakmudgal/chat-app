@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-// Get server URL from environment or use fallback
-const SERVER_URL =
-  typeof process !== "undefined" && process.env?.BUN_PUBLIC_SERVER_URL
-    ? process.env.BUN_PUBLIC_SERVER_URL
-    : "http://localhost:8080";
+// Get server URL - hardcoded for now to avoid process.env issues
+const SERVER_URL = "https://chat-app-rjtx.onrender.com";
 
 console.log("Connecting to server:", SERVER_URL);
 const socket = io(SERVER_URL);
