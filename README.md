@@ -1,1 +1,1 @@
-to run `docker-compose --up build`
+to run `docker compose up --build`
